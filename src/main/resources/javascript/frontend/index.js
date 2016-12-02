@@ -18,9 +18,9 @@ function isStandardBrowserEnv() {
   );
 }
 
-let store = createStore(todoApp);
-
 if (isStandardBrowserEnv()) {
+  let store = createStore(todoApp);
+
   // サーバサイドでhtml内に埋め込んだ初期データをフロントエンドレンダリング時にも使用する
   // これをやらないと、サーバサイドレンダリングしたデータがフロントエンドレンダリングのタイミングで消えてしまう
   store.dispatch(addTodo(window.myapp.initialData));
@@ -45,7 +45,8 @@ if (isStandardBrowserEnv()) {
   // ・src/main/resources/templates/index.ejs
   window.myapp = window.myapp || {};
   window.myapp.Provider = Provider;
-  window.myapp.store = store;
+  window.myapp.createStore = createStore;
+  window.myapp.todoApp = todoApp;
   window.myapp.addTodo = addTodo;
   window.myapp.App = App;
 }

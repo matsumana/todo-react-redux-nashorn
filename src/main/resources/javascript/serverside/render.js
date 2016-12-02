@@ -10,7 +10,9 @@ window.myapp.render.compiledTemplateCaches = {};
 function render(template, model, url) {
 
   // 初期データをセット
-  window.myapp.store.dispatch(window.myapp.addTodo(model.initialData));
+  var store = window.myapp.createStore(window.myapp.todoApp);
+  store.dispatch(window.myapp.addTodo(model.initialData));
+  window.myapp.store = store;
 
   var jsonObject = convertToJsObject(model);
   var compiledTemplate;
