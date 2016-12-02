@@ -1,3 +1,12 @@
+# React Server Side Rendering using Nashorn
+
+- React
+- Redux
+- babel
+- browserify
+- Nashorn
+- Spring Boot
+
 # prepare
 
 - install Node.js
