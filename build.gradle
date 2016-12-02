@@ -1,0 +1,55 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.2.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'todo'
+    version = '0.1.0-SNAPSHOT'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+def jsWorkingDir = 'src/main/resources/javascript/frontend'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+}
+
+task yarnInstall(type: Exec) {
+    workingDir jsWorkingDir
+    commandLine 'yarn', 'install'
+}
+
+task yarnBuild(type: Exec) {
+    workingDir jsWorkingDir
+    commandLine 'yarn', 'build'
+}
+
+task deleteUnnecessaryFiles(type: Delete) {
+    delete 'build/resources/main/javascript/frontend'
+}
+
+// processResourcesタスクの後に実行するタスクの設定
+// (processResourcesタスクの後がclassesタスク)
+classes.dependsOn yarnBuild
+
+// buildタスクの前に実行するタスクの設定
+build.dependsOn deleteUnnecessaryFiles

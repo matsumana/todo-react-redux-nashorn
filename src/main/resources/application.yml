@@ -1,0 +1,3 @@
+server:
+  tomcat:
+    max-threads: 1  # ReactをNashornで動かす場合ThreadLocalに保持されるので初期化処理がスレッド毎に発生して遅くなる。開発時はスレッド数を少なくする

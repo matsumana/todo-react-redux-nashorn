@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redux Todos example</title>
+</head>
+<body>
+<div class="todoapp" id="root">
+    <%-
+    ReactDOMServer.renderToString(
+            React.createElement(window.myapp.Provider, {store: window.myapp.store},
+                    React.createElement(window.myapp.App)
+            )
+    );
+    %>
+</div>
+
+<script>
+  window.myapp = window.myapp || {};
+  window.myapp.initialData = "<%= initialData %>";
+</script>
+
+<script src="/scripts/bundle.js"></script>
+</body>
+</html>
