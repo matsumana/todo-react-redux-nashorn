@@ -10,6 +10,12 @@ $ npm install -g yarn
 $ ./gradlew yarnInstall
 ```
 
+# how to clean
+
+```
+$ ./gradlew clean
+```
+
 # how to run app
 
 ```
@@ -19,5 +25,5 @@ $ ./gradlew bootRun
 # how to package
 
 ```
-$ ./gradlew clean build
+$ ./gradlew build
 ```
