@@ -22,7 +22,7 @@ if (isStandardBrowserEnv()) {
   let store = createStore(todoApp);
 
   // サーバサイドでhtml内に埋め込んだ初期データをフロントエンドレンダリング時にも使用する
-  // これをやらないと、サーバサイドレンダリングしたデータがフロントエンドレンダリングのタイミングで消えてしまう
+  // これをやらないと、サーバサイドレンダリングした内容が無視され全て差分と認識されてしまう
   store.dispatch(addTodo(window.myapp.initialData));
 
   render(
